@@ -1,0 +1,19 @@
+Bootstrap: docker
+From: python:3.11
+Stage: spython-base
+
+%post
+
+mkdir -p /app
+cd /app
+
+apt update
+apt upgrade -y
+apt install -y git
+apt install -y --upgrade gmsh
+%runscript
+cd /app
+exec /bin/bash "$@"
+%startscript
+cd /app
+exec /bin/bash "$@"
